@@ -1,20 +1,6 @@
 const axios = require("axios");
 
-const Prefixes = ["ai", "anjara", "ae"];
 const RP = "Réponds selon le sujet de la question, ajoute des emojis pertinents et garde un ton adapté.";
-
-const fonts = {
-  a: "𝗮", b: "𝗯", c: "𝗰", d: "𝗱", e: "𝗲", f: "𝗳", g: "𝗴", h: "𝗵", i: "𝗶",
-  j: "𝗷", k: "𝗸", l: "𝗹", m: "𝗺", n: "𝗻", o: "𝗼", p: "𝗽", q: "𝗾", r: "𝗿",
-  s: "𝘀", t: "𝘁", u: "𝘂", v: "𝘃", w: "𝘄", x: "𝘅", y: "𝘆", z: "𝘇",
-  A: "𝗔", B: "𝗕", C: "𝗖", D: "𝗗", E: "𝗘", F: "𝗙", G: "𝗚", H: "𝗛", I: "𝗜",
-  J: "𝗝", K: "𝗞", L: "𝗟", M: "𝗠", N: "𝗡", O: "𝗢", P: "𝗣", Q: "𝗤", R: "𝗥",
-  S: "𝗦", T: "𝗧", U: "𝗨", V: "𝗩", W: "𝗪", X: "𝗫", Y: "𝗬", Z: "𝗭"
-};
-
-function applyFont(text) {
-  return text.split('').map(char => fonts[char] || char).join('');
-}
 
 function detectSujet(texte) {
   texte = texte.toLowerCase();
@@ -28,60 +14,65 @@ function detectSujet(texte) {
 
 function styleSujet(sujet) {
   switch (sujet) {
-    case "amour": return "💖 Réponds avec douceur et un ton romantique.";
-    case "jeux": return "🎮 Réponds comme un gamer cool et enthousiaste.";
-    case "science": return "🔬 Réponds de manière claire et instructive.";
-    case "cuisine": return "🍳 Donne une réponse gourmande et conviviale.";
-    case "musique": return "🎵 Réponds avec un ton artistique et inspirant.";
-    default: return "🤖 Réponds normalement avec un ton amical.";
+    case "amour": return "💖 Réponds avec douceur et un ton romantique. Max 5000 caractères.";
+    case "jeux": return "🎮 Réponds comme un gamer cool et enthousiaste. Max 5000 caractères.";
+    case "science": return "🔬 Réponds de manière claire et instructive. Max 5000 caractères.";
+    case "cuisine": return "🍳 Donne une réponse gourmande et conviviale. Max 5000 caractères.";
+    case "musique": return "🎵 Réponds avec un ton artistique et inspirant. Max 5000 caractères.";
+    default: return "🤖 Réponds normalement avec un ton amical. Max 5000 caractères.";
   }
+}
+
+// Encadré avec signature
+function makeFrame(text) {
+  const signature = "💀 Merci d’utiliser OCTAVIO DARK BOT — Créé par Octavio Dark.";
+  const lines = [...text.split("\n"), "", signature];
+  const maxLen = Math.max(...lines.map(l => l.length));
+  const top = "╭" + "─".repeat(maxLen + 2) + "╮";
+  const bottom = "╰" + "─".repeat(maxLen + 2) + "╯";
+  const body = lines.map(l => "│ " + l.padEnd(maxLen) + " │").join("\n");
+  return `${top}\n${body}\n${bottom}`;
 }
 
 module.exports = {
   config: {
     name: "ai",
-    aliases: ["ae"],
+    aliases: ["ae", "anjara"],
     version: "3.0",
     author: "messie osango",
     countDown: 2,
     role: 0,
     shortDescription: "🤖 IA intelligente par sujet",
-    longDescription: "Répond automatiquement selon le thème de la question, avec un style adapté et du texte stylisé.",
+    longDescription: "Répond automatiquement selon le thème de la question, jusqu'à 5000 caractères.",
     category: "ai",
     guide: "{pn} <question>"
   },
 
   onStart: async function ({ message, args }) {
-    const input = args.join(" ").trim().toLowerCase();
+    const input = args.join(" ").trim();
 
     if (!input) {
-      return message.reply(`╭━━━━━━━━━━━━━━━━╮
-┃ 🤖 Salut humain !
-┃ Je suis Kakashi Hatake, créé par Octavio 😎
-┃ Pose-moi ta question 💬
-╰━━━━━━━━━━━━━━━━╯`);
+      return message.reply(makeFrame(`🤖 Salut humain !  
+Je suis Kakashi Hatake, créé par Octavio 😎  
+Pose-moi ta question 💬`));
     }
 
-    if (input.includes("qui es-tu")) {
-      return message.reply(`╭━━━━━━━━━━━━━━━━╮
-┃ 🤖 Je suis Kakashi Hatake.
-┃ Mon créateur est Octavio 👑
-╰━━━━━━━━━━━━━━━━╯`);
+    if (input.toLowerCase().includes("qui es-tu")) {
+      return message.reply(makeFrame(`🤖 Je suis Kakashi Hatake.  
+Mon créateur est Octavio 👑`));
     }
 
     const sujet = detectSujet(input);
     const style = styleSujet(sujet);
 
     try {
-      const url = `https://haji-mix-api.gleeze.com/api/groq?ask=${encodeURIComponent(input)}&model=llama-3.3-70b-versatile&uid=56666&RP=${encodeURIComponent(style)}&stream=True`;
-      const res = await axios.get(url, { timeout: 20000 });
+      const url = `https://haji-mix-api.gleeze.com/api/groq?ask=${encodeURIComponent(input)}&model=llama-3.3-70b-versatile&uid=56666&RP=${encodeURIComponent(style)}&max_tokens=5000`;
+      const res = await axios.get(url, { timeout: 30000 });
       const raw = res.data?.answer || res.data?.result || res.data?.message || "🤖 Aucune réponse reçue.";
-      const styled = applyFont(raw);
-      return message.reply(`╭━━━━━━━━━━━━━━━━╮
-┃ ${styled}
-╰━━━━━━━━━━━━━━━━╯`);
+
+      return message.reply(makeFrame(raw));
     } catch {
-      return message.reply(applyFont("❌ Erreur de réponse IA."));
+      return message.reply(makeFrame("❌ Erreur de réponse IA."));
     }
   }
 };
