@@ -1,138 +1,158 @@
-version.tooOldVersion = `╭━[ OCTAVIO DARK BOT ]━━╮
+module.exports = {
+	updater: {
+		tooOldVersion: `╭━[ OCTAVIO DARK BOT ]━━╮
 Vous utilisez une version trop ancienne de Octavio Dark Bot, veuillez mettre à jour vers la dernière version en tapant la commande : %1 dans le cmd/console/terminal/shell
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-updater.updateTooFast = `╭━[ OCTAVIO DARK BOT ]━━╮
+		updateTooFast: `╭━[ OCTAVIO DARK BOT ]━━╮
 Veuillez patienter au moins 5 minutes après le dernier commit pour mettre à jour sans erreur, %1 minutes %2 secondes restantes
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-updater.latestVersion = `╭━[ OCTAVIO DARK BOT ]━━╮
+		latestVersion: `╭━[ OCTAVIO DARK BOT ]━━╮
 Vous utilisez la dernière version
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-updater.cantFindVersion = `╭━[ OCTAVIO DARK BOT ]━━╮
+		cantFindVersion: `╭━[ OCTAVIO DARK BOT ]━━╮
 Vous utilisez une version non définie (%1), veuillez vérifier à nouveau votre fichier package.json
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-updater.newVersions = `╭━[ OCTAVIO DARK BOT ]━━╮
+		newVersions: `╭━[ OCTAVIO DARK BOT ]━━╮
 Il y a %1 nouvelles versions à mettre à jour, la mise à jour commence...
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-updater.updateSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
+		updateSuccess: `╭━[ OCTAVIO DARK BOT ]━━╮
 Mise à jour réussie%1
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-updater.configChanged = `╭━[ OCTAVIO DARK BOT ]━━╮
+		configChanged: `╭━[ OCTAVIO DARK BOT ]━━╮
 Le %1 a été modifié, veuillez vérifier à nouveau votre fichier config.json
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-updater.installingPackages = `╭━[ OCTAVIO DARK BOT ]━━╮
+		installingPackages: `╭━[ OCTAVIO DARK BOT ]━━╮
 Installation des dépendances pour bot...
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-updater.installSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
+		installSuccess: `╭━[ OCTAVIO DARK BOT ]━━╮
 Dépendances installées avec succès, redémarrez le bot pour utiliser la nouvelle version
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-updater.backupSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
+		backupSuccess: `╭━[ OCTAVIO DARK BOT ]━━╮
 Les fichiers modifiés ont été sauvegardés avec succès, voir dans le dossier %1
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-updater.restartToApply = `╭━[ OCTAVIO DARK BOT ]━━╮
+		restartToApply: `╭━[ OCTAVIO DARK BOT ]━━╮
 Redémarrez le bot pour appliquer la nouvelle version.
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-updater.skipFile = `╭━[ OCTAVIO DARK BOT ]━━╮
+		skipFile: `╭━[ OCTAVIO DARK BOT ]━━╮
 Il existe une nouvelle version du fichier %1, mais vous avez ignoré ce fichier pendant le processus de mise à jour avec le commentaire %2 dans ce fichier
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`
+	},
 
-verifyfbid.sendCode = `╭━[ OCTAVIO DARK BOT ]━━╮
+	verifyfbid: {
+		sendCode: `╭━[ OCTAVIO DARK BOT ]━━╮
 Votre code de vérification est :
 %1
 Le code de vérification est valide pendant %2 minutes
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`
+	},
 
-utils.errorOccurred = `╭━[ OCTAVIO DARK BOT ]━━╮
+	utils: {
+		errorOccurred: `╭━[ OCTAVIO DARK BOT ]━━╮
 Une erreur s'est produite :
 %1
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`
+	},
 
-command.restartedBot = `╭━[ OCTAVIO DARK BOT ]━━╮
+	command: {
+		restartedBot: `╭━[ OCTAVIO DARK BOT ]━━╮
 Le bot a été redémarré
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`
+	},
 
-app.googleApiRefreshTokenExpired = `╭━[ OCTAVIO DARK BOT ]━━╮
+	app: {
+		googleApiRefreshTokenExpired: `╭━[ OCTAVIO DARK BOT ]━━╮
 Le jeton d'actualisation de l'API Google a expiré ou a été révoqué. Veuillez obtenir un nouveau jeton sur https://developers.google.com/oauthplayground/
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-app.tooManyRequests = `╭━[ OCTAVIO DARK BOT ]━━╮
+		tooManyRequests: `╭━[ OCTAVIO DARK BOT ]━━╮
 Trop de requêtes à la dernière minute. Veuillez réessayer ultérieurement.
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-app.notPermissionChangeFbstate = `╭━[ OCTAVIO DARK BOT ]━━╮
+		notPermissionChangeFbstate: `╭━[ OCTAVIO DARK BOT ]━━╮
 Vous n'avez pas la permission de modifier fbstate !
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-app.notFoundFbstate = `╭━[ OCTAVIO DARK BOT ]━━╮
+		notFoundFbstate: `╭━[ OCTAVIO DARK BOT ]━━╮
 Veuillez saisir fbstate !
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-app.changedFbstateSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
+		changedFbstateSuccess: `╭━[ OCTAVIO DARK BOT ]━━╮
 L'état fbstate a été modifié avec succès !
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-app.serverError = `╭━[ OCTAVIO DARK BOT ]━━╮
+		serverError: `╭━[ OCTAVIO DARK BOT ]━━╮
 Erreur du serveur, veuillez réessayer plus tard !
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`
+	},
 
-loadData.loadThreadDataSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
+	loadData: {
+		loadThreadDataSuccess: `╭━[ OCTAVIO DARK BOT ]━━╮
 Les données du groupe %1 ont été chargées avec succès !
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-loadData.loadUserDataSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
+		loadUserDataSuccess: `╭━[ OCTAVIO DARK BOT ]━━╮
 Chargement réussi des données de l'utilisateur %1 !
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-loadData.refreshingThreadData = `╭━[ OCTAVIO DARK BOT ]━━╮
+		refreshingThreadData: `╭━[ OCTAVIO DARK BOT ]━━╮
 Mise à jour des informations des groupes...
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-loadData.refreshThreadDataSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
+		refreshThreadDataSuccess: `╭━[ OCTAVIO DARK BOT ]━━╮
 Informations mises à jour du groupe %1 !
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-loadData.refreshThreadDataError = `╭━[ OCTAVIO DARK BOT ]━━╮
+		refreshThreadDataError: `╭━[ OCTAVIO DARK BOT ]━━╮
 Une erreur s'est produite lors de la mise à jour des informations des groupes !
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`
+	},
 
-loadScripts.loadScriptsError = `╭━[ OCTAVIO DARK BOT ]━━╮
+	loadScripts: {
+		loadScriptsError: `╭━[ OCTAVIO DARK BOT ]━━╮
 Les fichiers %1 présentent une erreur lors du chargement :
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-loadScripts.loadScriptsNotMatchOrigin = `╭━[ OCTAVIO DARK BOT ]━━╮
+		loadScriptsNotMatchOrigin: `╭━[ OCTAVIO DARK BOT ]━━╮
 Les fichiers %1 ne correspondent pas aux fichiers d'origine du projet github, assurez-vous que ces fichiers de commandes sont fiables :
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-loadScripts.NOT_FOUND = `╭━[ OCTAVIO DARK BOT ]━━╮
+		NOT_FOUND: `╭━[ OCTAVIO DARK BOT ]━━╮
 INTROUVABLE DANS LE CODE SOURCE ORIGINAL :
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-loadScripts.NOT_MATCH = `╭━[ OCTAVIO DARK BOT ]━━╮
+		NOT_MATCH: `╭━[ OCTAVIO DARK BOT ]━━╮
 NE CORRESPOND PAS AU CODE SOURCE ORIGINAL :
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`
+	},
 
-socketIO.connected = `╭━[ OCTAVIO DARK BOT ]━━╮
+	socketIO: {
+		connected: `╭━[ OCTAVIO DARK BOT ]━━╮
 Connecté au serveur socket.io
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-socketIO.error = `╭━[ OCTAVIO DARK BOT ]━━╮
+		error: `╭━[ OCTAVIO DARK BOT ]━━╮
 Une erreur s'est produite lors de la connexion au serveur socket.io
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`
+	},
 
-handlerCheckData.cantCreateThread = `╭━[ OCTAVIO DARK BOT ]━━╮
+	handlerCheckData: {
+		cantCreateThread: `╭━[ OCTAVIO DARK BOT ]━━╮
 Les groupes avec l'ID '%1' ne peuvent pas être écrits dans la base de données !
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`,
 
-handlerCheckData.cantCreateUser = `╭━[ OCTAVIO DARK BOT ]━━╮
+		cantCreateUser: `╭━[ OCTAVIO DARK BOT ]━━╮
 Les utilisateurs avec l'ID '%1' ne peuvent pas être écrits dans la base de données !
-╰━━━━━━━━━━━━━━━━╯`;
+╰━━━━━━━━━━━━━━━━╯`
+	}
+};
