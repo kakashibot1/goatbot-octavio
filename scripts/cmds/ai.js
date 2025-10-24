@@ -1,87 +1,142 @@
-const axios = require("axios");
+const axios = require('axios');
+const validUrl = require('valid-url');
+const fs = require('fs');
+const path = require('path');
+const { v4: uuidv4 } = require('uuid');
 
-const Prefixes = ["ai", "anjara", "ae"];
-const RP = "Réponds selon le sujet de la question, ajoute des emojis pertinents et garde un ton adapté.";
+const API_ENDPOINT = "https://shizuai.vercel.app/chat";
+const CLEAR_ENDPOINT = "https://shizuai.vercel.app/chat/clear";
+const TMP_DIR = path.join(__dirname, 'tmp');
 
-const fonts = {
-  a: "𝗮", b: "𝗯", c: "𝗰", d: "𝗱", e: "𝗲", f: "𝗳", g: "𝗴", h: "𝗵", i: "𝗶",
-  j: "𝗷", k: "𝗸", l: "𝗹", m: "𝗺", n: "𝗻", o: "𝗼", p: "𝗽", q: "𝗾", r: "𝗿",
-  s: "𝘀", t: "𝘁", u: "𝘂", v: "𝘃", w: "𝘄", x: "𝘅", y: "𝘆", z: "𝘇",
-  A: "𝗔", B: "𝗕", C: "𝗖", D: "𝗗", E: "𝗘", F: "𝗙", G: "𝗚", H: "𝗛", I: "𝗜",
-  J: "𝗝", K: "𝗞", L: "𝗟", M: "𝗠", N: "𝗡", O: "𝗢", P: "𝗣", Q: "𝗤", R: "𝗥",
-  S: "𝗦", T: "𝗧", U: "𝗨", V: "𝗩", W: "𝗪", X: "𝗫", Y: "𝗬", Z: "𝗭"
+if (!fs.existsSync(TMP_DIR)) fs.mkdirSync(TMP_DIR);
+
+const downloadFile = async (url, ext) => {
+  const filePath = path.join(TMP_DIR, `${uuidv4()}.${ext}`);
+  const response = await axios.get(url, { responseType: 'arraybuffer' });
+  fs.writeFileSync(filePath, Buffer.from(response.data));
+  return filePath;
 };
 
-function applyFont(text) {
-  return text.split('').map(char => fonts[char] || char).join('');
-}
+function makeFrame(text) {
+  const signature = "💀 Merci d’utiliser OCTAVIO DARK BOT — Créé par Octavio Dark.";
+  const lines = [...text.split("\n"), "", signature];
+  const maxLen = Math.max(...lines.map(l => l.length));
+  const top = "╭" + "─".repeat(maxLen + 2) + "╮";
+  const bottom = "╰" + "─".repeat(maxLen + 2) + "╯";
+  const body = lines.map(l => "│ " + l.padEnd(maxLen) + " │").join("\n");
+  return `${top}\n${body}\n${bottom}`;
+};
 
-function detectSujet(texte) {
-  texte = texte.toLowerCase();
-  if (texte.includes("amour") || texte.includes("couple") || texte.includes("coeur")) return "amour";
-  if (texte.includes("jeu") || texte.includes("gaming") || texte.includes("ps5") || texte.includes("minecraft")) return "jeux";
-  if (texte.includes("science") || texte.includes("physique") || texte.includes("chimie") || texte.includes("univers")) return "science";
-  if (texte.includes("cuisine") || texte.includes("recette") || texte.includes("manger")) return "cuisine";
-  if (texte.includes("musique") || texte.includes("chanson") || texte.includes("rap")) return "musique";
-  return "autre";
-}
-
-function styleSujet(sujet) {
-  switch (sujet) {
-    case "amour": return "💖 Réponds avec douceur et un ton romantique.";
-    case "jeux": return "🎮 Réponds comme un gamer cool et enthousiaste.";
-    case "science": return "🔬 Réponds de manière claire et instructive.";
-    case "cuisine": return "🍳 Donne une réponse gourmande et conviviale.";
-    case "musique": return "🎵 Réponds avec un ton artistique et inspirant.";
-    default: return "🤖 Réponds normalement avec un ton amical.";
+const resetConversation = async (api, event, message) => {
+  api.setMessageReaction("♻️", event.messageID, () => {}, true);
+  try {
+    await axios.delete(`${CLEAR_ENDPOINT}/${event.senderID}`);
+    return message.reply(makeFrame(`✅ Conversation reset for UID: ${event.senderID}`));
+  } catch (error) {
+    console.error('❌ Reset Error:', error.message);
+    return message.reply(makeFrame("❌ Reset failed. Try again."));
   }
-}
+};
+
+const handleAIRequest = async (api, event, userInput, message, isReply = false) => {
+  const userId = event.senderID;
+  let messageContent = userInput;
+  let imageUrl = null;
+
+  api.setMessageReaction("⏳", event.messageID, () => {}, true);
+
+  if (event.messageReply) {
+    const replyData = event.messageReply;
+    if (replyData.senderID !== global.GoatBot?.botID && replyData.body) {
+      const trimmedReply = replyData.body.length > 300 ? replyData.body.slice(0,300)+"..." : replyData.body;
+      messageContent += `\n\n📌 Reply:\n"${trimmedReply}"`;
+    }
+    const attachment = replyData.attachments?.[0];
+    if (attachment?.type === 'photo') imageUrl = attachment.url;
+  }
+
+  const urlMatch = messageContent.match(/(https?:\/\/[^\s]+)/)?.[0];
+  if (urlMatch && validUrl.isWebUri(urlMatch)) {
+    imageUrl = urlMatch;
+    messageContent = messageContent.replace(urlMatch, '').trim();
+  }
+
+  if (!messageContent && !imageUrl) {
+    api.setMessageReaction("❌", event.messageID, () => {}, true);
+    return message.reply(makeFrame("💬 Provide a message or image."));
+  }
+
+  try {
+    const response = await axios.post(
+      API_ENDPOINT,
+      { uid: userId, message: messageContent, image_url: imageUrl },
+      { timeout: 60000 }
+    );
+
+    const { reply: textReply, image_url: genImageUrl, music_data: musicData, video_data: videoData, shotti_data: shotiData, lyrics_data: lyricsData } = response.data;
+
+    let finalReply = textReply || '✅ AI Response:';
+    const attachments = [];
+
+    if (genImageUrl) try { attachments.push(fs.createReadStream(await downloadFile(genImageUrl, 'jpg'))); finalReply = `🖼️ Image générée\n\n${finalReply}`; } catch { finalReply += '\n🖼️ Image download failed.'; }
+    if (musicData?.downloadUrl) try { attachments.push(fs.createReadStream(await downloadFile(musicData.downloadUrl, 'mp3'))); finalReply = `🎵 Music\n\n${finalReply}`; } catch { finalReply += '\n🎵 Music download failed.'; }
+    if (videoData?.downloadUrl) try { attachments.push(fs.createReadStream(await downloadFile(videoData.downloadUrl, 'mp4'))); finalReply = `🎬 Video\n\n${finalReply}`; } catch { finalReply += '\n🎬 Video download failed.'; }
+    if (shotiData?.videoUrl) try { attachments.push(fs.createReadStream(await downloadFile(shotiData.videoUrl, 'mp4'))); finalReply = `🎬 Shoti\n\n${finalReply}`; } catch { finalReply += '\n🎬 Shoti video download failed.'; }
+    if (lyricsData) try { let lyricsText = lyricsData.lyrics; if (lyricsText.length>1500) lyricsText=lyricsText.substring(0,1500)+'... [truncated]'; finalReply += `\n\n🎵 Lyrics for "${lyricsData.track_name}":\n${lyricsText}`; } catch { finalReply += '\n📝 Lyrics processing failed.'; }
+
+    const sentMessage = await message.reply({ body: makeFrame(finalReply), attachment: attachments.length>0?attachments:undefined });
+
+    if (sentMessage?.messageID) {
+      global.GoatBot.onReply.set(sentMessage.messageID, { commandName: 'ai', messageID: sentMessage.messageID, author: userId });
+    }
+
+    api.setMessageReaction("✅", event.messageID, () => {}, true);
+
+  } catch (error) {
+    console.error("❌ API Error:", error.response?.data || error.message);
+    api.setMessageReaction("❌", event.messageID, () => {}, true);
+
+    let errorMessage = "⚠️ AI Error:\n\n";
+    if (error.code==='ECONNABORTED'||error.message.includes('timeout')) errorMessage+="⏱️ Timeout. Try again.";
+    else if (error.response?.status===429) errorMessage+="🚦 Too many requests. Slow down.";
+    else errorMessage+="❌ Unexpected error: "+(error.message||'No details');
+
+    return message.reply(makeFrame(errorMessage));
+  }
+};
 
 module.exports = {
   config: {
-    name: "ai",
-    aliases: ["ae"],
-    version: "3.0",
-    author: "messie osango",
-    countDown: 2,
+    name: 'ai',
+    aliases: [],
+    version: '2.3.0',
+    author: 'Octavio Dark',
     role: 0,
-    shortDescription: "🤖 IA intelligente par sujet",
-    longDescription: "Répond automatiquement selon le thème de la question, avec un style adapté et du texte stylisé.",
-    category: "ai",
-    guide: "{pn} <question>"
+    category: 'ai',
+    longDescription: { en: 'Advanced AI with image, music, video, lyrics, Shoti' },
+    guide: { en: `.ai [message] • Chat, Image, Music, Video, Lyrics, Shoti • Reply "clear" to reset` }
   },
 
-  onStart: async function ({ message, args }) {
-    const input = args.join(" ").trim().toLowerCase();
+  onStart: async function({ api, event, args, message }) {
+    const userInput = args.join(' ').trim();
+    if (!userInput) return message.reply(makeFrame("❗ Please enter a message."));
+    if (['clear','reset'].includes(userInput.toLowerCase())) return await resetConversation(api,event,message);
+    return await handleAIRequest(api,event,userInput,message);
+  },
 
-    if (!input) {
-      return message.reply(`╭━━━━━━━━━━━━━━━━╮
-┃ 🤖 Salut humain !
-┃ Je suis Kakashi Hatake, créé par Octavio 😎
-┃ Pose-moi ta question 💬
-╰━━━━━━━━━━━━━━━━╯`);
-    }
+  onReply: async function({ api, event, Reply, message }) {
+    if (event.senderID!==Reply.author) return;
+    const userInput = event.body?.trim();
+    if (!userInput) return;
+    if (['clear','reset'].includes(userInput.toLowerCase())) return await resetConversation(api,event,message);
+    return await handleAIRequest(api,event,userInput,message,true);
+  },
 
-    if (input.includes("qui es-tu")) {
-      return message.reply(`╭━━━━━━━━━━━━━━━━╮
-┃ 🤖 Je suis Kakashi Hatake.
-┃ Mon créateur est Octavio 👑
-╰━━━━━━━━━━━━━━━━╯`);
-    }
-
-    const sujet = detectSujet(input);
-    const style = styleSujet(sujet);
-
-    try {
-      const url = `https://haji-mix-api.gleeze.com/api/groq?ask=${encodeURIComponent(input)}&model=llama-3.3-70b-versatile&uid=56666&RP=${encodeURIComponent(style)}&stream=True`;
-      const res = await axios.get(url, { timeout: 20000 });
-      const raw = res.data?.answer || res.data?.result || res.data?.message || "🤖 Aucune réponse reçue.";
-      const styled = applyFont(raw);
-      return message.reply(`╭━━━━━━━━━━━━━━━━╮
-┃ ${styled}
-╰━━━━━━━━━━━━━━━━╯`);
-    } catch {
-      return message.reply(applyFont("❌ Erreur de réponse IA."));
-    }
+  onChat: async function({ api, event, message }) {
+    const body = event.body?.trim();
+    if (!body?.toLowerCase().startsWith('ai ')) return;
+    const userInput = body.slice(3).trim();
+    if (!userInput) return;
+    return await handleAIRequest(api,event,userInput,message);
   }
 };
