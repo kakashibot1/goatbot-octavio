@@ -1,173 +1,138 @@
-Goat.newVersionDetected = `╭━[ OCTAVIO DARK BOT ]━━╮
-Vous utilisez la version %1, la dernière version étant %2. Veuillez effectuer la mise à jour pour une meilleure utilisation du bot en saisissant la commande %3 dans la console/cmd.
+version.tooOldVersion = `╭━[ OCTAVIO DARK BOT ]━━╮
+Vous utilisez une version trop ancienne de Octavio Dark Bot, veuillez mettre à jour vers la dernière version en tapant la commande : %1 dans le cmd/console/terminal/shell
 ╰━━━━━━━━━━━━━━━━╯`;
 
-Goat.autoRestart1 = `╭━[ OCTAVIO DARK BOT ]━━╮
-Le bot redémarrera automatiquement dans %1
+updater.updateTooFast = `╭━[ OCTAVIO DARK BOT ]━━╮
+Veuillez patienter au moins 5 minutes après le dernier commit pour mettre à jour sans erreur, %1 minutes %2 secondes restantes
 ╰━━━━━━━━━━━━━━━━╯`;
 
-Goat.autoRestart2 = `╭━[ OCTAVIO DARK BOT ]━━╮
-Le bot redémarrera automatiquement par une tâche cron : %1
+updater.latestVersion = `╭━[ OCTAVIO DARK BOT ]━━╮
+Vous utilisez la dernière version
 ╰━━━━━━━━━━━━━━━━╯`;
 
-Goat.googleApiTokenExpired = `╭━[ OCTAVIO DARK BOT ]━━╮
+updater.cantFindVersion = `╭━[ OCTAVIO DARK BOT ]━━╮
+Vous utilisez une version non définie (%1), veuillez vérifier à nouveau votre fichier package.json
+╰━━━━━━━━━━━━━━━━╯`;
+
+updater.newVersions = `╭━[ OCTAVIO DARK BOT ]━━╮
+Il y a %1 nouvelles versions à mettre à jour, la mise à jour commence...
+╰━━━━━━━━━━━━━━━━╯`;
+
+updater.updateSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
+Mise à jour réussie%1
+╰━━━━━━━━━━━━━━━━╯`;
+
+updater.configChanged = `╭━[ OCTAVIO DARK BOT ]━━╮
+Le %1 a été modifié, veuillez vérifier à nouveau votre fichier config.json
+╰━━━━━━━━━━━━━━━━╯`;
+
+updater.installingPackages = `╭━[ OCTAVIO DARK BOT ]━━╮
+Installation des dépendances pour bot...
+╰━━━━━━━━━━━━━━━━╯`;
+
+updater.installSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
+Dépendances installées avec succès, redémarrez le bot pour utiliser la nouvelle version
+╰━━━━━━━━━━━━━━━━╯`;
+
+updater.backupSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
+Les fichiers modifiés ont été sauvegardés avec succès, voir dans le dossier %1
+╰━━━━━━━━━━━━━━━━╯`;
+
+updater.restartToApply = `╭━[ OCTAVIO DARK BOT ]━━╮
+Redémarrez le bot pour appliquer la nouvelle version.
+╰━━━━━━━━━━━━━━━━╯`;
+
+updater.skipFile = `╭━[ OCTAVIO DARK BOT ]━━╮
+Il existe une nouvelle version du fichier %1, mais vous avez ignoré ce fichier pendant le processus de mise à jour avec le commentaire %2 dans ce fichier
+╰━━━━━━━━━━━━━━━━╯`;
+
+verifyfbid.sendCode = `╭━[ OCTAVIO DARK BOT ]━━╮
+Votre code de vérification est :
+%1
+Le code de vérification est valide pendant %2 minutes
+╰━━━━━━━━━━━━━━━━╯`;
+
+utils.errorOccurred = `╭━[ OCTAVIO DARK BOT ]━━╮
+Une erreur s'est produite :
+%1
+╰━━━━━━━━━━━━━━━━╯`;
+
+command.restartedBot = `╭━[ OCTAVIO DARK BOT ]━━╮
+Le bot a été redémarré
+╰━━━━━━━━━━━━━━━━╯`;
+
+app.googleApiRefreshTokenExpired = `╭━[ OCTAVIO DARK BOT ]━━╮
 Le jeton d'actualisation de l'API Google a expiré ou a été révoqué. Veuillez obtenir un nouveau jeton sur https://developers.google.com/oauthplayground/
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.currentlyLogged = `╭━[ OCTAVIO DARK BOT ]━━╮
-Connexion en cours
+app.tooManyRequests = `╭━[ OCTAVIO DARK BOT ]━━╮
+Trop de requêtes à la dernière minute. Veuillez réessayer ultérieurement.
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.notFoundDirAccount = `╭━[ OCTAVIO DARK BOT ]━━╮
-Impossible de trouver le fichier %1
+app.notPermissionChangeFbstate = `╭━[ OCTAVIO DARK BOT ]━━╮
+Vous n'avez pas la permission de modifier fbstate !
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.loginToken = `╭━[ OCTAVIO DARK BOT ]━━╮
-Connexion avec un jeton d'accès
+app.notFoundFbstate = `╭━[ OCTAVIO DARK BOT ]━━╮
+Veuillez saisir fbstate !
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.loginCookieString = `╭━[ OCTAVIO DARK BOT ]━━╮
-Connexion avec la chaîne de cookie
+app.changedFbstateSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
+L'état fbstate a été modifié avec succès !
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.loginCookieNetscape = `╭━[ OCTAVIO DARK BOT ]━━╮
-Connexion avec cookie netscape
+app.serverError = `╭━[ OCTAVIO DARK BOT ]━━╮
+Erreur du serveur, veuillez réessayer plus tard !
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.loginPassword = `╭━[ OCTAVIO DARK BOT ]━━╮
-Connexion avec email et mot de passe...
+loadData.loadThreadDataSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
+Les données du groupe %1 ont été chargées avec succès !
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.accountError = `╭━[ OCTAVIO DARK BOT ]━━╮
-Veuillez saisir le jeton d'autorisation complet sous la forme %1 ou le cookie sous la forme de chaîne %2 ou le cookie sous la forme de tableau :
-[
- { nom : %3, valeur : %4 },
- { nom : %5, valeur : %6 }
-]
-ou
-[
- { clé : %3, valeur : %4 },
- { clé : %5, valeur : %6 }
-]
-dans le fichier %7
+loadData.loadUserDataSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
+Chargement réussi des données de l'utilisateur %1 !
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.cannotFindAccount = `╭━[ OCTAVIO DARK BOT ]━━╮
-Impossible de trouver le compte Facebook, choisissez l'une des options suivantes (entrez le numéro à choisir ou appuyez vers le bas et vers le haut pour choisir et entrez pour confirmer) :
+loadData.refreshingThreadData = `╭━[ OCTAVIO DARK BOT ]━━╮
+Mise à jour des informations des groupes...
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.chooseAccount = `╭━[ OCTAVIO DARK BOT ]━━╮
-Connexion avec e-mail et mot de passe
+loadData.refreshThreadDataSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
+Informations mises à jour du groupe %1 !
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.chooseToken = `╭━[ OCTAVIO DARK BOT ]━━╮
-Connexion avec autorisation complète du jeton
+loadData.refreshThreadDataError = `╭━[ OCTAVIO DARK BOT ]━━╮
+Une erreur s'est produite lors de la mise à jour des informations des groupes !
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.chooseCookieString = `╭━[ OCTAVIO DARK BOT ]━━╮
-Connexion avec chaîne de cookie
+loadScripts.loadScriptsError = `╭━[ OCTAVIO DARK BOT ]━━╮
+Les fichiers %1 présentent une erreur lors du chargement :
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.chooseCookieArray = `╭━[ OCTAVIO DARK BOT ]━━╮
-Connexion avec tableau de cookies
+loadScripts.loadScriptsNotMatchOrigin = `╭━[ OCTAVIO DARK BOT ]━━╮
+Les fichiers %1 ne correspondent pas aux fichiers d'origine du projet github, assurez-vous que ces fichiers de commandes sont fiables :
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.loginWith = `╭━[ OCTAVIO DARK BOT ]━━╮
-Vous choisissez de %1
+loadScripts.NOT_FOUND = `╭━[ OCTAVIO DARK BOT ]━━╮
+INTROUVABLE DANS LE CODE SOURCE ORIGINAL :
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.inputEmail = `╭━[ OCTAVIO DARK BOT ]━━╮
-> Veuillez saisir votre e-mail (id) ou votre numéro de téléphone compte Facebook :
+loadScripts.NOT_MATCH = `╭━[ OCTAVIO DARK BOT ]━━╮
+NE CORRESPOND PAS AU CODE SOURCE ORIGINAL :
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.inputPassword = `╭━[ OCTAVIO DARK BOT ]━━╮
-> Veuillez saisir votre mot de passe :
+socketIO.connected = `╭━[ OCTAVIO DARK BOT ]━━╮
+Connecté au serveur socket.io
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.input2FA = `╭━[ OCTAVIO DARK BOT ]━━╮
-> Veuillez saisir le code 2FA (laissez vide si vous n'avez pas activé 2FA) :
+socketIO.error = `╭━[ OCTAVIO DARK BOT ]━━╮
+Une erreur s'est produite lors de la connexion au serveur socket.io
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.inputToken = `╭━[ OCTAVIO DARK BOT ]━━╮
-> Veuillez saisir l'autorisation complète de votre jeton (commencez par EAAAA) :
+handlerCheckData.cantCreateThread = `╭━[ OCTAVIO DARK BOT ]━━╮
+Les groupes avec l'ID '%1' ne peuvent pas être écrits dans la base de données !
 ╰━━━━━━━━━━━━━━━━╯`;
 
-login.inputCookieString = `╭━[ OCTAVIO DARK BOT ]━━╮
-> Veuillez saisir votre chaîne de cookie :
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.inputCookieArray = `╭━[ OCTAVIO DARK BOT ]━━╮
-> Veuillez saisir votre tableau de cookies :
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.refreshCookie = `╭━[ OCTAVIO DARK BOT ]━━╮
-Actualisation du cookie...
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.refreshCookieError = `╭━[ OCTAVIO DARK BOT ]━━╮
-Une erreur s'est produite lors de l'actualisation du cookie
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.refreshCookieSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
-Cookie actualisé avec succès, redémarrez le bot pour utiliser le nouveau cookie
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.refreshCookieWarning = `╭━[ OCTAVIO DARK BOT ]━━╮
-Vous avez activé le mode de rafraîchissement automatique des cookies, mais vous n'avez pas configuré l'e-mail et le mot de passe dans le fichier config.json
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.tokenError = `╭━[ OCTAVIO DARK BOT ]━━╮
-Le jeton est invalide ou a expiré. Veuillez saisir le jeton d'autorisation complet au format %1 dans le fichier %2.
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.cookieError = `╭━[ OCTAVIO DARK BOT ]━━╮
-Le cookie n'est pas valide ou a expiré.
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.loginPasswordError = `╭━[ OCTAVIO DARK BOT ]━━╮
-Une erreur s'est produite lors de la connexion avec l'e-mail et le mot de passe dans config.json
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.loginSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
-Connexion réussie
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.loginError = `╭━[ OCTAVIO DARK BOT ]━━╮
-Une erreur s'est produite lors de la connexion
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.openDashboardSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
-Page de gestion des bots ouverte avec succès
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.openDashboardError = `╭━[ OCTAVIO DARK BOT ]━━╮
-Une erreur s'est produite lors de l'ouverture de la page de gestion du bot
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.changeGbanData = `╭━[ OCTAVIO DARK BOT ]━━╮
-LES DONNÉES ONT ÉTÉ MODIFIÉES, IL EST ACTUELLEMENT IMPOSSIBLE DE LANCER UN BOT
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.errorNoti = `╭━[ OCTAVIO DARK BOT ]━━╮
-Une erreur s'est produite lors de la récupération du message
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.refreshFbstateSuccess = `╭━[ OCTAVIO DARK BOT ]━━╮
-Fichier %1 actualisé
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.refreshFbstateError = `╭━[ OCTAVIO DARK BOT ]━━╮
-Une erreur s'est produite lors de l'actualisation du fichier %1
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.youAreBanned = `╭━[ OCTAVIO DARK BOT ]━━╮
-Vous avez été banni du projet Octavio Dark Bot
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.runBot = `╭━[ OCTAVIO DARK BOT ]━━╮
-Lancer le bot avec succès, commencer à recevoir des messages des utilisateurs
-╰━━━━━━━━━━━━━━━━╯`;
-
-login.notLoggedIn = `╭━[ OCTAVIO DARK BOT ]━━╮
-Une erreur s'est produite, veuillez vérifier à nouveau votre compte Facebook
+handlerCheckData.cantCreateUser = `╭━[ OCTAVIO DARK BOT ]━━╮
+Les utilisateurs avec l'ID '%1' ne peuvent pas être écrits dans la base de données !
 ╰━━━━━━━━━━━━━━━━╯`;
