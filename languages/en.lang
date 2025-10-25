@@ -1,158 +1,136 @@
-module.exports = {
-	updater: {
-		tooOldVersion: `╭━[ OCTAVIO DARK BOT ]━━╮
-Vous utilisez une version trop ancienne de Octavio Dark Bot, veuillez mettre à jour vers la dernière version en tapant la commande : %1 dans le cmd/console/terminal/shell
-╰━━━━━━━━━━━━━━━━╯`,
+Goat.newVersionDetected = ╭━[ GEMINI BOT ]━━╮
+Vous utilisez la version %1, la dernière version étant %2. Veuillez effectuer la mise à jour pour une meilleure utilisation du bot en saisissant la commande %3 dans la console/cmd.
+╰━━━━━━━━━━━━━━━━╯
+Goat.autoRestart1 = ╭━[ GEMINI BOT ]━━╮
+Le bot redémarrera automatiquement dans %1
+╰━━━━━━━━━━━━━━━━╯
+Goat.autoRestart2 = ╭━[ GEMINI BOT ]━━╮
+Le bot redémarrera automatiquement par une tâche cron : %1
+╰━━━━━━━━━━━━━━━━╯
+Goat.googleApiTokenExpired = ╭━[ GEMINI BOT ]━━╮
+Le jeton d'actualisation de l'API Google a expiré ou a été révoqué. Veuillez obtenir un nouveau jeton sur https://developers.google.com/oauthplayground/
+╰━━━━━━━━━━━━━━━━╯
 
-		updateTooFast: `╭━[ OCTAVIO DARK BOT ]━━╮
-Veuillez patienter au moins 5 minutes après le dernier commit pour mettre à jour sans erreur, %1 minutes %2 secondes restantes
-╰━━━━━━━━━━━━━━━━╯`,
+login.currentlyLogged = ╭━[ GEMINI BOT ]━━╮
+Connexion en cours
+╰━━━━━━━━━━━━━━━━╯
+login.notFoundDirAccount = ╭━[ GEMINI BOT ]━━╮
+Impossible de trouver le fichier %1
+╰━━━━━━━━━━━━━━━━╯
+login.loginToken = ╭━[ GEMINI BOT ]━━╮
+Connexion avec un jeton d'accès
+╰━━━━━━━━━━━━━━━━╯
+login.loginCookieString = ╭━[ GEMINI BOT ]━━╮
+Connexion avec la chaîne de cookie
+╰━━━━━━━━━━━━━━━━╯
+login.loginCookieNetscape = ╭━[ GEMINI BOT ]━━╮
+Connexion avec cookie netscape
+╰━━━━━━━━━━━━━━━━╯
+login.loginCookieArray = ╭━[ GEMINI BOT ]━━╮
+Connexion avec un tableau de cookies
+╰━━━━━━━━━━━━━━━━╯
+login.loginPassword = ╭━[ GEMINI BOT ]━━╮
+Connexion avec email et mot de passe...
+╰━━━━━━━━━━━━━━━━╯
+login.accountError = ╭━[ GEMINI BOT ]━━╮
+Veuillez saisir le jeton d'autorisation complet sous la forme %1 ou le cookie sous la forme de chaîne %2 ou le cookie sous la forme de tableau :
+[
+ { nom : %3, valeur : %4 },
+ { nom : %5, valeur : %6 }
+]
+ ou
+[
+ { clé : %3, valeur : %4 },
+ { clé : %5, valeur : %6 }
+]
+dans le fichier %7
+╰━━━━━━━━━━━━━━━━╯
+login.cannotFindAccount = ╭━[ GEMINI BOT ]━━╮
+Impossible de trouver le compte Facebook, choisissez l'une des options suivantes :
+╰━━━━━━━━━━━━━━━━╯
+login.chooseAccount = ╭━[ GEMINI BOT ]━━╮
+Connexion avec e-mail et mot de passe
+╰━━━━━━━━━━━━━━━━╯
+login.chooseToken = ╭━[ GEMINI BOT ]━━╮
+Connexion avec autorisation complète du jeton
+╰━━━━━━━━━━━━━━━━╯
+login.chooseCookieString = ╭━[ GEMINI BOT ]━━╮
+Connexion avec la chaîne de cookie
+╰━━━━━━━━━━━━━━━━╯
+login.chooseCookieArray = ╭━[ GEMINI BOT ]━━╮
+Connexion avec un tableau de cookies
+╰━━━━━━━━━━━━━━━━╯
+login.loginWith = ╭━[ GEMINI BOT ]━━╮
+Vous choisissez de %1
+╰━━━━━━━━━━━━━━━━╯
+login.inputEmail = ╭━[ GEMINI BOT ]━━╮
+> Veuillez saisir votre e-mail ou numéro de téléphone Facebook :
+╰━━━━━━━━━━━━━━━━╯
+login.inputPassword = ╭━[ GEMINI BOT ]━━╮
+> Veuillez saisir votre mot de passe :
+╰━━━━━━━━━━━━━━━━╯
+login.input2FA = ╭━[ GEMINI BOT ]━━╮
+> Veuillez saisir le code 2FA :
+╰━━━━━━━━━━━━━━━━╯
+login.inputToken = ╭━[ GEMINI BOT ]━━╮
+> Veuillez saisir votre jeton (commencez par EAAAA) :
+╰━━━━━━━━━━━━━━━━╯
+login.refreshCookie = ╭━[ GEMINI BOT ]━━╮
+Actualisation du cookie...
+╰━━━━━━━━━━━━━━━━╯
+login.refreshCookieSuccess = ╭━[ GEMINI BOT ]━━╮
+Cookie actualisé avec succès, redémarrez le bot
+╰━━━━━━━━━━━━━━━━╯
+login.loginSuccess = ╭━[ GEMINI BOT ]━━╮
+Connexion réussie
+╰━━━━━━━━━━━━━━━━╯
+login.loginError = ╭━[ GEMINI BOT ]━━╮
+Erreur lors de la connexion
+╰━━━━━━━━━━━━━━━━╯
+login.runBot = ╭━[ GEMINI BOT ]━━╮
+Le bot a démarré, prêt à recevoir des messages
+╰━━━━━━━━━━━━━━━━╯
 
-		latestVersion: `╭━[ OCTAVIO DARK BOT ]━━╮
-Vous utilisez la dernière version
-╰━━━━━━━━━━━━━━━━╯`,
+version.tooOldVersion = ╭━[ GEMINI BOT ]━━╮
+Vous utilisez une version trop ancienne de Gemini Bot, mettez à jour via la commande : %1
+╰━━━━━━━━━━━━━━━━╯
 
-		cantFindVersion: `╭━[ OCTAVIO DARK BOT ]━━╮
-Vous utilisez une version non définie (%1), veuillez vérifier à nouveau votre fichier package.json
-╰━━━━━━━━━━━━━━━━╯`,
+loadData.loadThreadDataSuccess = ╭━[ GEMINI BOT ]━━╮
+Les données du groupe %1 ont été chargées avec succès !
+╰━━━━━━━━━━━━━━━━╯
+loadData.loadUserDataSuccess = ╭━[ GEMINI BOT ]━━╮
+Les données utilisateur %1 ont été chargées avec succès !
+╰━━━━━━━━━━━━━━━━╯
 
-		newVersions: `╭━[ OCTAVIO DARK BOT ]━━╮
-Il y a %1 nouvelles versions à mettre à jour, la mise à jour commence...
-╰━━━━━━━━━━━━━━━━╯`,
+handlerEvents.commandNotFound = ╭━[ GEMINI BOT ]━━╮
+La commande « %1 » n'existe pas, tapez %2help pour voir toutes les commandes.
+╰━━━━━━━━━━━━━━━━╯
+handlerEvents.errorOccurred = ╭━[ GEMINI BOT ]━━╮
+[ %1 ] Erreur dans la commande « %2 »
+╰━━━━━━━━━━━━━━━━╯
 
-		updateSuccess: `╭━[ OCTAVIO DARK BOT ]━━╮
-Mise à jour réussie%1
-╰━━━━━━━━━━━━━━━━╯`,
+indexController.connectMongoDBSuccess = ╭━[ GEMINI BOT ]━━╮
+Base de données MongoDB connectée avec succès !
+╰━━━━━━━━━━━━━━━━╯
+indexController.connectMySQLSuccess = ╭━[ GEMINI BOT ]━━╮
+Base de données SQLITE connectée avec succès !
+╰━━━━━━━━━━━━━━━━╯
 
-		configChanged: `╭━[ OCTAVIO DARK BOT ]━━╮
-Le %1 a été modifié, veuillez vérifier à nouveau votre fichier config.json
-╰━━━━━━━━━━━━━━━━╯`,
+updater.updateSuccess = ╭━[ GEMINI BOT ]━━╮
+Mise à jour réussie
+╰━━━━━━━━━━━━━━━━╯
+updater.installSuccess = ╭━[ GEMINI BOT ]━━╮
+Dépendances installées avec succès
+╰━━━━━━━━━━━━━━━━╯
+updater.restartToApply = ╭━[ GEMINI BOT ]━━╮
+Redémarrez le bot pour appliquer la mise à jour.
+╰━━━━━━━━━━━━━━━━╯
 
-		installingPackages: `╭━[ OCTAVIO DARK BOT ]━━╮
-Installation des dépendances pour bot...
-╰━━━━━━━━━━━━━━━━╯`,
+command.restartedBot = ╭━[ GEMINI BOT ]━━╮
+Le bot a été redémarré
+╰━━━━━━━━━━━━━━━━╯
 
-		installSuccess: `╭━[ OCTAVIO DARK BOT ]━━╮
-Dépendances installées avec succès, redémarrez le bot pour utiliser la nouvelle version
-╰━━━━━━━━━━━━━━━━╯`,
-
-		backupSuccess: `╭━[ OCTAVIO DARK BOT ]━━╮
-Les fichiers modifiés ont été sauvegardés avec succès, voir dans le dossier %1
-╰━━━━━━━━━━━━━━━━╯`,
-
-		restartToApply: `╭━[ OCTAVIO DARK BOT ]━━╮
-Redémarrez le bot pour appliquer la nouvelle version.
-╰━━━━━━━━━━━━━━━━╯`,
-
-		skipFile: `╭━[ OCTAVIO DARK BOT ]━━╮
-Il existe une nouvelle version du fichier %1, mais vous avez ignoré ce fichier pendant le processus de mise à jour avec le commentaire %2 dans ce fichier
-╰━━━━━━━━━━━━━━━━╯`
-	},
-
-	verifyfbid: {
-		sendCode: `╭━[ OCTAVIO DARK BOT ]━━╮
-Votre code de vérification est :
-%1
-Le code de vérification est valide pendant %2 minutes
-╰━━━━━━━━━━━━━━━━╯`
-	},
-
-	utils: {
-		errorOccurred: `╭━[ OCTAVIO DARK BOT ]━━╮
+utils.errorOccurred = ╭━[ GEMINI BOT ]━━╮
 Une erreur s'est produite :
 %1
-╰━━━━━━━━━━━━━━━━╯`
-	},
-
-	command: {
-		restartedBot: `╭━[ OCTAVIO DARK BOT ]━━╮
-Le bot a été redémarré
-╰━━━━━━━━━━━━━━━━╯`
-	},
-
-	app: {
-		googleApiRefreshTokenExpired: `╭━[ OCTAVIO DARK BOT ]━━╮
-Le jeton d'actualisation de l'API Google a expiré ou a été révoqué. Veuillez obtenir un nouveau jeton sur https://developers.google.com/oauthplayground/
-╰━━━━━━━━━━━━━━━━╯`,
-
-		tooManyRequests: `╭━[ OCTAVIO DARK BOT ]━━╮
-Trop de requêtes à la dernière minute. Veuillez réessayer ultérieurement.
-╰━━━━━━━━━━━━━━━━╯`,
-
-		notPermissionChangeFbstate: `╭━[ OCTAVIO DARK BOT ]━━╮
-Vous n'avez pas la permission de modifier fbstate !
-╰━━━━━━━━━━━━━━━━╯`,
-
-		notFoundFbstate: `╭━[ OCTAVIO DARK BOT ]━━╮
-Veuillez saisir fbstate !
-╰━━━━━━━━━━━━━━━━╯`,
-
-		changedFbstateSuccess: `╭━[ OCTAVIO DARK BOT ]━━╮
-L'état fbstate a été modifié avec succès !
-╰━━━━━━━━━━━━━━━━╯`,
-
-		serverError: `╭━[ OCTAVIO DARK BOT ]━━╮
-Erreur du serveur, veuillez réessayer plus tard !
-╰━━━━━━━━━━━━━━━━╯`
-	},
-
-	loadData: {
-		loadThreadDataSuccess: `╭━[ OCTAVIO DARK BOT ]━━╮
-Les données du groupe %1 ont été chargées avec succès !
-╰━━━━━━━━━━━━━━━━╯`,
-
-		loadUserDataSuccess: `╭━[ OCTAVIO DARK BOT ]━━╮
-Chargement réussi des données de l'utilisateur %1 !
-╰━━━━━━━━━━━━━━━━╯`,
-
-		refreshingThreadData: `╭━[ OCTAVIO DARK BOT ]━━╮
-Mise à jour des informations des groupes...
-╰━━━━━━━━━━━━━━━━╯`,
-
-		refreshThreadDataSuccess: `╭━[ OCTAVIO DARK BOT ]━━╮
-Informations mises à jour du groupe %1 !
-╰━━━━━━━━━━━━━━━━╯`,
-
-		refreshThreadDataError: `╭━[ OCTAVIO DARK BOT ]━━╮
-Une erreur s'est produite lors de la mise à jour des informations des groupes !
-╰━━━━━━━━━━━━━━━━╯`
-	},
-
-	loadScripts: {
-		loadScriptsError: `╭━[ OCTAVIO DARK BOT ]━━╮
-Les fichiers %1 présentent une erreur lors du chargement :
-╰━━━━━━━━━━━━━━━━╯`,
-
-		loadScriptsNotMatchOrigin: `╭━[ OCTAVIO DARK BOT ]━━╮
-Les fichiers %1 ne correspondent pas aux fichiers d'origine du projet github, assurez-vous que ces fichiers de commandes sont fiables :
-╰━━━━━━━━━━━━━━━━╯`,
-
-		NOT_FOUND: `╭━[ OCTAVIO DARK BOT ]━━╮
-INTROUVABLE DANS LE CODE SOURCE ORIGINAL :
-╰━━━━━━━━━━━━━━━━╯`,
-
-		NOT_MATCH: `╭━[ OCTAVIO DARK BOT ]━━╮
-NE CORRESPOND PAS AU CODE SOURCE ORIGINAL :
-╰━━━━━━━━━━━━━━━━╯`
-	},
-
-	socketIO: {
-		connected: `╭━[ OCTAVIO DARK BOT ]━━╮
-Connecté au serveur socket.io
-╰━━━━━━━━━━━━━━━━╯`,
-
-		error: `╭━[ OCTAVIO DARK BOT ]━━╮
-Une erreur s'est produite lors de la connexion au serveur socket.io
-╰━━━━━━━━━━━━━━━━╯`
-	},
-
-	handlerCheckData: {
-		cantCreateThread: `╭━[ OCTAVIO DARK BOT ]━━╮
-Les groupes avec l'ID '%1' ne peuvent pas être écrits dans la base de données !
-╰━━━━━━━━━━━━━━━━╯`,
-
-		cantCreateUser: `╭━[ OCTAVIO DARK BOT ]━━╮
-Les utilisateurs avec l'ID '%1' ne peuvent pas être écrits dans la base de données !
-╰━━━━━━━━━━━━━━━━╯`
-	}
-};
+╰━━━━━━━━━━━━━━━━╯
